@@ -1,0 +1,52 @@
+import { useState } from 'react'
+import { Button } from "/components/ui/button"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "/components/ui/card"
+import { Input } from "/components/ui/input"
+import { Star } from "lucide-react"
+
+export default function AIDogeApp() {
+  const [userInput, setUserInput] = useState('')
+  const [response, setResponse] = useState('')
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setUserInput(e.target.value)
+  }
+
+  const generateResponse = () => {
+    // Placeholder for AI response generation logic
+    // For now, we'll just echo the user input with a doge-themed response
+    const aiResponse = `Wow! ${userInput} such response!`
+    setResponse(aiResponse)
+  }
+
+  return (
+    <div className="bg-gray-100 min-h-screen flex items-center justify-center">
+      <Card className="w-full max-w-md">
+        <CardHeader>
+          <CardTitle className="text-2xl font-bold flex items-center">
+            <Star className="mr-2" /> AI Doge Themed App
+          </CardTitle>
+          <CardDescription>
+            Enter your query and get a doge-themed AI response!
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div className="flex items-center space-x-2">
+            <Input
+              type="text"
+              placeholder="Enter your query..."
+              value={userInput}
+              onChange={handleInputChange}
+              className="w-full"
+            />
+            <Button onClick={generateResponse}>Generate</Button>
+          </div>
+          <div className="bg-gray-200 p-4 rounded-lg">
+            <p className="text-lg font-semibold">AI Response:</p>
+            <p className="mt-2">{response}</p>
+          </div>
+        </CardContent>
+      </Card>
+    </div>
+  )
+}
